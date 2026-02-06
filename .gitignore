@@ -1,2 +1,5 @@
+deps/cpython/
+deps/emsdk/
+
 dist/
 node_modules/

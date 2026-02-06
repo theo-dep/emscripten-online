@@ -5,4 +5,12 @@ import vue from "@vitejs/plugin-vue";
 export default defineConfig({
   base: "/emscripten-online/",
   plugins: [vue()],
+  optimizeDeps: {
+    exclude: ["**/deps/**"],
+  },
+  server: {
+    watch: {
+      ignored: ["**/deps/**"],
+    },
+  },
 });

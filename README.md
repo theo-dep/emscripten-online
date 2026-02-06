@@ -11,15 +11,23 @@ A web-based, client side, Emscripten development environment with code editor, H
 - Integrated terminal (xterm.js)
 - Resizable panels (SplitGrid)
 
-## Installation
+## Installation & Development
+
+Use [just](https://github.com/casey/just) and `make` to run commands (install them with any package manager).
 
 ```bash
-npm install
-npm run dev
+just dev
 ```
 
 ### Build
 
 ```bash
-npm run build
+just build
 ```
+
+### Other useful commands:
+
+- Preview the build: `just preview`
+- Lint the code: `just lint`
+- Format the code: `just format`
+- Build cpython: `just build-cpython`

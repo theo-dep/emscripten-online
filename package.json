@@ -3,14 +3,6 @@
   "private": true,
   "version": "0.0.0",
   "license": "Apache-2.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc -b && vite build",
-    "preview": "vite preview",
-    "lint": "eslint --fix src",
-    "format": "prettier . --write"
-  },
   "dependencies": {
     "@xterm/addon-fit": "^0.11.0",
     "@xterm/xterm": "^6.0.0",
