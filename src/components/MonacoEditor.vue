@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, watch } from "vue";
-import type { monaco as Monaco } from "../monaco.ts";
+import type { monaco as Monaco } from "@/monaco.ts";
 
 const props = defineProps<{
   modelValue: string;
@@ -23,12 +23,15 @@ onMounted(() => {
   if (editorContainer.value) {
     editor = props.monaco.editor.create(editorContainer.value, {
       value: props.modelValue,
-      language: "markdown",
+      language: "python",
       theme: "vs-dark",
       automaticLayout: true,
+      fontSize: 14,
+      minimap: { enabled: true },
+      scrollBeyondLastLine: false,
     });
 
-    // Update HTML viewer when editor content changes
+    // Update viewer when editor content changes
     editor.onDidChangeModelContent(() => {
       emit("update:modelValue", editor.getValue());
     });

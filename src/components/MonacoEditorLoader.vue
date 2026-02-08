@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
-import MonacoEditor from "./MonacoEditor.vue";
-import LoadingScreen from "./LoadingScreen.vue";
-import type { monaco as Monaco } from "../monaco.ts";
+import MonacoEditor from "@components/MonacoEditor.vue";
+import LoadingScreen from "@components/LoadingScreen.vue";
+import type { monaco as Monaco } from "@/monaco.ts";
 
 const props = defineProps<{
   modelValue: string;
@@ -48,7 +48,7 @@ defineExpose({ layout, isLoading });
     <MonacoEditor
       v-else
       ref="editorRef"
-      :model-value="modelValue"
+      :model-value="props.modelValue"
       :monaco="monaco!"
       @update:model-value="emit('update:modelValue', $event)"
     />

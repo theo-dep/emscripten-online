@@ -1,6 +1,6 @@
 {
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "Vue.volar",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "files.associations": {
     "Justfile": "makefile"
   }

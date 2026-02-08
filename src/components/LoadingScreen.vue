@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import svgUrl from "../assets/ring-resize.svg?raw";
+import svgUrl from "@assets/ring-resize.svg?url";
 </script>
 
 <template>
   <div class="loading-container">
-    <div class="loader" v-html="svgUrl"></div>
+    <div class="loader">
+      <embed :src="svgUrl" type="image/svg+xml" />
+    </div>
   </div>
 </template>
 
@@ -21,9 +23,10 @@ import svgUrl from "../assets/ring-resize.svg?raw";
 .loader {
   width: 80px;
   height: 80px;
+  filter: brightness(0) invert(1); /** white svg */
 }
 
-.loader :deep(svg) {
+.loader embed {
   width: 100%;
   height: 100%;
   stroke: #fff;

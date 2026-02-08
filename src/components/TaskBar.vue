@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-const lineEditText = ref<string>("");
+const lineEditText = ref<string>("Python!");
 
 const emit = defineEmits<{
   (e: "button-click", text: string): void;

@@ -1,24 +1,22 @@
 <script setup lang="ts">
-import { defineAsyncComponent } from "vue";
+import { ref, defineAsyncComponent } from "vue";
 
-const TaskBar = defineAsyncComponent(() => import("./components/TaskBar.vue"));
+const TaskBar = defineAsyncComponent(() => import("@components/TaskBar.vue"));
 const SplitGrid = defineAsyncComponent(
-  () => import("./components/SplitGrid.vue"),
+  () => import("@components/SplitGrid.vue"),
 );
 
-const handleButtonClick = (text: string): void => {
-  console.log("Button clicked with text:", text);
-};
+const splitGridRef = ref<InstanceType<typeof SplitGrid> | null>(null);
 
-const handleTerminalInput = (input: string): void => {
-  console.log("Terminal input:", input);
+const handleButtonClick = (text: string): void => {
+  splitGridRef.value?.runCode(text);
 };
 </script>
 
 <template>
   <div class="app-container">
     <TaskBar @button-click="handleButtonClick" />
-    <SplitGrid @terminal-input="handleTerminalInput" />
+    <SplitGrid ref="splitGridRef" />
   </div>
 </template>
 

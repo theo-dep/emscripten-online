@@ -1,10 +1,37 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
+import path from "path";
+import { fileURLToPath } from "url";
+import { viteStaticCopy } from "vite-plugin-static-copy";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const pythonDir = path.resolve(
+  __dirname,
+  "deps/cpython/cross-build/wasm32-emscripten/build/python",
+);
 
 // https://vite.dev/config/
 export default defineConfig({
   base: "/emscripten-online/",
-  plugins: [vue()],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "src"),
+      "@components": path.resolve(__dirname, "src/components"),
+      "@assets": path.resolve(__dirname, "src/assets"),
+      "@python": pythonDir,
+    },
+  },
+  plugins: [
+    vue(),
+    viteStaticCopy({
+      targets: [
+        {
+          src: path.join(pythonDir, "python.wasm"),
+          dest: "assets",
+        },
+      ],
+    }),
+  ],
   build: {
     rollupOptions: {
       output: {

@@ -3,10 +3,6 @@ import { ref, onMounted } from "vue";
 import { Terminal } from "@xterm/xterm";
 import { FitAddon } from "@xterm/addon-fit";
 
-const emit = defineEmits<{
-  (e: "terminal-input", input: string): void;
-}>();
-
 const terminalContainer = ref<HTMLDivElement | null>(null);
 let terminal: Terminal;
 let fitAddon: FitAddon;
@@ -15,11 +11,24 @@ const fit = () => {
   fitAddon?.fit();
 };
 
+const writeLine = (text: string) => {
+  terminal?.writeln(text);
+};
+
+const clear = () => {
+  terminal?.clear();
+};
+
 onMounted(() => {
-  // Initialize xterm Terminal
   terminal = new Terminal({
-    cursorBlink: true,
+    cursorBlink: false,
+    disableStdin: true,
+    theme: {
+      background: "#000000",
+      foreground: "#d4d4d4",
+    },
   });
+
   fitAddon = new FitAddon();
   terminal.loadAddon(fitAddon);
 
@@ -28,10 +37,7 @@ onMounted(() => {
     fitAddon.fit();
   }
 
-  terminal.writeln("Welcome to the terminal!");
-  terminal.onData((data: string) => {
-    emit("terminal-input", data);
-  });
+  terminal.writeln("Terminal ready...");
 
   const resizeObserver = new ResizeObserver(() => {
     fit();
@@ -42,7 +48,7 @@ onMounted(() => {
   }
 });
 
-defineExpose({ fit });
+defineExpose({ fit, writeLine, clear });
 </script>
 
 <template>
