@@ -1,6 +1,10 @@
 <script setup lang="ts">
-import TaskBar from "./components/TaskBar.vue";
-import SplitGrid from "./components/SplitGrid.vue";
+import { defineAsyncComponent } from "vue";
+
+const TaskBar = defineAsyncComponent(() => import("./components/TaskBar.vue"));
+const SplitGrid = defineAsyncComponent(
+  () => import("./components/SplitGrid.vue"),
+);
 
 const handleButtonClick = (text: string): void => {
   console.log("Button clicked with text:", text);
