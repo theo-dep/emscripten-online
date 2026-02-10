@@ -1,5 +1,6 @@
 deps/cpython/
 deps/emsdk/
+deps/llvm/
 
 dist/
 node_modules/

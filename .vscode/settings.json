@@ -3,5 +3,11 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "files.associations": {
     "Justfile": "makefile"
+  },
+  "C_Cpp.files.exclude": {
+    "**/.vs": true,
+    "**/cpython": true,
+    "**/emsdk": true,
+    "**/llvm": true
   }
 }
